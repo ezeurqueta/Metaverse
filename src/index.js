@@ -22,19 +22,34 @@ const space = new THREE.Mesh(geometry_space, material_space);
 scene.add(space);
 
 
-//Cube
+//GeometryCube
 const geometry = new THREE.BoxGeometry( 1, 1, 1 );
 const material = new THREE.MeshPhongMaterial( { color: 0x00ff00 } );
 const cube = new THREE.Mesh( geometry, material );
 scene.add( cube );
-camera.position.z = 5;
+
+//GeometryCone
+const geometry_cone = new THREE.ConeGeometry( 5, 20, 32 );
+const material_cone = new THREE.MeshPhongMaterial( {color: 0xed810a} );
+const cone = new THREE.Mesh( geometry_cone, material_cone );
+cone.position.set(-10, 5, 0);
+scene.add( cone );
+
+//GeometryKnot
+const geometry_knot = new THREE.TorusKnotGeometry( 5, 1.5, 50, 8 );
+const material_knot = new THREE.MeshPhongMaterial( { color: 0xeff986 } );
+const Knot = new THREE.Mesh( geometry_knot, material_knot );
+Knot.position.set(10, 5, 0);
+scene.add( Knot );
+
+
 
 camera.position.set(10, 5, 40);
 
 function animate() {
-    cube.rotation.x +=0.01;
-    cube.rotation.y +=0.1;
-    cube.rotation.z +=0.1;
+    cube.rotation.x +=0.5;
+    cone.rotation.x +=0.01;
+    Knot.rotation.x +=0.001;
     //camera.position.z -= 0.01;
 	requestAnimationFrame( animate );
 	renderer.render( scene, camera );
