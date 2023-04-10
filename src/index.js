@@ -1,3 +1,5 @@
+import Movements from "./movements.js";
+
 //Creating a new scene on three.js
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0xbfd1e5);
@@ -52,6 +54,26 @@ function animate() {
     Knot.rotation.x +=0.001;
     //camera.position.z -= 0.01;
 	requestAnimationFrame( animate );
+    //Movement to the left
+    if(Movements.isPressed(37)) {
+        camera.position.x -= 1;
+    }
+    //Up
+    if(Movements.isPressed(38)) {
+        camera.position.x += 1;
+        camera.position.y += 1
+    }
+    //Right
+    if(Movements.isPressed(39)) {
+        camera.position.x += 1;
+    }
+    //Down
+    if(Movements.isPressed(40)) {
+        camera.position.x -= 1;
+        camera.position.y -= 1
+    }
+    
+    camera.lookAt(space.position)
 	renderer.render( scene, camera );
 }
 animate();
